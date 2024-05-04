@@ -1,8 +1,8 @@
 package top.hendrixshen.magiclib.mixin.compat.minecraft.math;
 
 import com.mojang.math.Quaternion;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import top.hendrixshen.magiclib.compat.minecraft.api.math.QuaternionCompatApi;
@@ -16,7 +16,7 @@ import top.hendrixshen.magiclib.compat.minecraft.api.math.QuaternionCompatApi;
 /**
  * The implementation for mc [1.14.4, ~)
  */
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 @Mixin(Quaternion.class)
 public abstract class MixinQuaternion implements QuaternionCompatApi {
     //#if MC > 11404
