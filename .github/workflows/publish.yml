@@ -61,13 +61,10 @@ jobs:
           BUILD_TYPE: "BETA"
         run: ./gradlew preprocessResources --stacktrace
 
-      - name: Publish Maven with Gradle
+      - name: Build
         env:
           BUILD_TYPE: "BETA"
-          MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
-          MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
-          SIGNING_PGP_KEY: ${{ secrets.SIGNING_PGP_KEY }}
-        run: ./gradlew build publish -x test --stacktrace
+        run: ./gradlew build -x test --stacktrace
 
       - name: Upload assets to GitHub Action
         uses: actions/upload-artifact@v4
