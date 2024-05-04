@@ -1,19 +1,9 @@
-name: Build
+name: Publish
 on:
-  push:
-    branches:
-      - 'dev/**'
-      - 'exp/**'
-    paths:
-      - "**.gradle"
-      - "gradle.properties"
-      - "src/**"
-      - "versions/**"
-      - ".github/**"
   release:
     types:
       - published
-  pull_request:
+  workflow_dispatch:
 
 jobs:
   build:
