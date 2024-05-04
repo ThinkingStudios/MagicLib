@@ -1,12 +1,12 @@
 package top.hendrixshen.magiclib.compat.minecraft.api.client.renderer.entity;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.world.entity.Entity;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Quaternionf;
 import top.hendrixshen.magiclib.compat.api.UnImplCompatApiException;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public interface EntityRenderDispatcherCompatApi {
     default double distanceToSqrCompat(Entity entity) {
         throw new UnImplCompatApiException();

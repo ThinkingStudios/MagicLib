@@ -2,15 +2,15 @@ package top.hendrixshen.magiclib.language.impl;
 
 import com.google.common.collect.Lists;
 import lombok.Getter;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ReloadableResourceManager;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.loading.FMLLoader;
 import org.jetbrains.annotations.NotNull;
 import top.hendrixshen.magiclib.MagicLibReference;
 import top.hendrixshen.magiclib.impl.config.ConfigEntrypoint;
@@ -48,7 +48,7 @@ public class MagicLanguageManager implements ResourceManagerReloadListener {
         }
     }
 
-    @Environment(EnvType.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     public void initClient() {
         this.resourceManager = Minecraft.getInstance().getResourceManager();
         this.fallbackLanguageList = Lists.newArrayList(ConfigEntrypoint.getFallbackLanguageListFromConfig());
@@ -60,7 +60,7 @@ public class MagicLanguageManager implements ResourceManagerReloadListener {
         String languagePath = String.format("lang/%s.json", code);
         Set<String> nameSpaces;
 
-        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER) {
+        if (FMLLoader.getDist() == Dist.DEDICATED_SERVER) {
             // 1.15 的 server 缺少 ResourceManager.getNamespaces
             nameSpaces = ((MagicLanguageResourceManager) resourceManager).getNamespaces();
         } else {

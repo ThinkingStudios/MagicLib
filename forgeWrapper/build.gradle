@@ -15,7 +15,7 @@ base {
 }
 
 def fabric_subprojects = project.parent.subprojects.findAll({
-    it.name != "fabricWrapper"
+    it.name != "forgeWrapper"
 })
 
 fabric_subprojects.collect {
@@ -56,7 +56,7 @@ processResources {
         into("assets/${project.mod_id}")
     }
 
-    filesMatching("fabric.mod.json") {
+    filesMatching("META-INF/mods.toml") {
         expand([
                 "mod_description": project.mod_description,
                 "mod_homepage"   : project.mod_homepage,
@@ -77,6 +77,7 @@ processResources {
             jars.add(["file": "META-INF/jars/${project.mod_archives_base_name}-${it.minecraft_version}-${project.version}.jar"])
         })
 
+        /*
         File file = file("build/resources/main/fabric.mod.json")
         JsonSlurper slurper = new JsonSlurper()
         JsonBuilder builder = new JsonBuilder(slurper.parse(file))
@@ -86,6 +87,8 @@ processResources {
         writer.append(builder.toPrettyString())
         writer.flush()
         writer.close()
+
+         */
     }
 }
 

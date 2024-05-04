@@ -3,8 +3,8 @@ package top.hendrixshen.magiclib.malilib.impl.config;
 import com.google.gson.JsonElement;
 import fi.dy.masa.malilib.config.IConfigOptionListEntry;
 import fi.dy.masa.malilib.config.options.ConfigBase;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 import top.hendrixshen.magiclib.SharedConstants;
@@ -14,7 +14,7 @@ import java.util.function.Consumer;
 
 @Deprecated()
 @ApiStatus.ScheduledForRemoval(inVersion = "0.8")
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class TranslatableConfigOptionList extends MagicConfigOptionList {
     static {
         DeprecatedFeatureHelper.warn(SharedConstants.MAGICLIB_VERSION_0_8);

@@ -1,12 +1,12 @@
 package top.hendrixshen.magiclib.compat.minecraft.api.blaze3d.vertex;
 
 import com.mojang.blaze3d.vertex.BufferBuilder;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Matrix4f;
 import top.hendrixshen.magiclib.compat.api.UnImplCompatApiException;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public interface BufferBuilderCompatApi {
     default BufferBuilder vertexCompat(Matrix4f matrix4f, float x, float y, float z) {
         throw new UnImplCompatApiException();

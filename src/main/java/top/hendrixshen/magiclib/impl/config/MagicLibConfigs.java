@@ -5,9 +5,9 @@ import fi.dy.masa.malilib.config.IConfigOptionListEntry;
 import fi.dy.masa.malilib.config.options.ConfigHotkey;
 import fi.dy.masa.malilib.util.ActiveMode;
 import fi.dy.masa.malilib.util.Color4f;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.core.config.Configurator;
 import org.jetbrains.annotations.ApiStatus;
@@ -26,7 +26,7 @@ import top.hendrixshen.magiclib.malilib.impl.ConfigManager;
 import java.util.ArrayList;
 
 @ApiStatus.Internal
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class MagicLibConfigs {
     @Config(category = ConfigCategory.GENERIC)
     public static boolean debug = false;

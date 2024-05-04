@@ -8,8 +8,8 @@ import top.hendrixshen.magiclib.compat.minecraft.api.network.chat.StyleCompatApi
 
 //#if MC < 11700
 //#if MC > 11502
-//$$ import net.fabricmc.api.EnvType;
-//$$ import net.fabricmc.api.Environment;
+//$$ import net.minecraftforge.api.distmarker.Dist;
+//$$ import net.minecraftforge.api.distmarker.OnlyIn;
 //$$ import net.minecraft.network.chat.ClickEvent;
 //$$ import net.minecraft.network.chat.HoverEvent;
 //$$ import net.minecraft.network.chat.TextColor;
@@ -45,7 +45,7 @@ public abstract class MixinStyle implements StyleCompatApi {
     @Shadow
     //#if MC > 11502
     //#if MC > 11502 && MC < 11700
-    //$$ @Environment(EnvType.CLIENT)
+    //$$ @OnlyIn(Dist.CLIENT)
     //#endif
     public abstract Style withUnderlined(@Nullable Boolean underlined);
     //#else

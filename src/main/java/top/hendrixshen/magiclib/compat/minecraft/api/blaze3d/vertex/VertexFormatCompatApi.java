@@ -1,14 +1,14 @@
 package top.hendrixshen.magiclib.compat.minecraft.api.blaze3d.vertex;
 
 import com.mojang.blaze3d.vertex.VertexFormat;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 //#if MC <= 11605
 //$$ import org.lwjgl.opengl.GL11;
 //#endif
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public interface VertexFormatCompatApi {
     class Mode {
         //#if MC > 11605

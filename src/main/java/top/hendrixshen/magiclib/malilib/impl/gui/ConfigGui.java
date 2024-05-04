@@ -5,8 +5,8 @@ import fi.dy.masa.malilib.config.IConfigBase;
 import fi.dy.masa.malilib.gui.GuiBase;
 import fi.dy.masa.malilib.gui.GuiConfigsBase;
 import fi.dy.masa.malilib.gui.button.ButtonGeneric;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import top.hendrixshen.magiclib.language.api.I18n;
 import top.hendrixshen.magiclib.malilib.impl.ConfigManager;
@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class ConfigGui extends GuiConfigsBase {
     private String tab;
     private final String identifier;

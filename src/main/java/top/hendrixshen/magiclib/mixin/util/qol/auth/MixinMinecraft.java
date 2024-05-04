@@ -1,8 +1,8 @@
 package top.hendrixshen.magiclib.mixin.util.qol.auth;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Coerce;
@@ -14,7 +14,7 @@ import top.hendrixshen.magiclib.dependency.impl.MixinDependencyPredicates;
  * The implementation for mc [1.16.5, ~)
  */
 @Dependencies(predicate = MixinDependencyPredicates.DevMixinPredicate.class)
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 @Mixin(Minecraft.class)
 public class MixinMinecraft {
     @Redirect(

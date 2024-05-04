@@ -1,13 +1,13 @@
 package top.hendrixshen.magiclib.compat.minecraft.api.client.gui.components;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public interface ButtonCompatApi {
     @Contract(value = "_, _ -> new", pure = true)
     static @NotNull BuilderCompatApi builder(Component component, OnPressCompat onPress) {

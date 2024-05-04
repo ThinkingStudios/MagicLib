@@ -1,9 +1,9 @@
 package top.hendrixshen.magiclib.mixin.compat.minecraft.client;
 
 import com.mojang.blaze3d.platform.Window;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import top.hendrixshen.magiclib.compat.minecraft.api.client.MinecraftCompatApi;
@@ -12,7 +12,7 @@ import top.hendrixshen.magiclib.compat.minecraft.api.client.MinecraftCompatApi;
 //$$ import org.spongepowered.asm.mixin.Final;
 //#endif
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 @Mixin(Minecraft.class)
 public abstract class MixinMinecraft implements MinecraftCompatApi {
     //#if MC > 11404

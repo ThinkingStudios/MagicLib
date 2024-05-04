@@ -1,11 +1,11 @@
 package top.hendrixshen.magiclib.mixin.compat.minecraft.math;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.spongepowered.asm.mixin.Mixin;
 import top.hendrixshen.magiclib.compat.preprocess.api.DummyClass;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 @Mixin(DummyClass.class)
 public class MixinVector3f {
 }

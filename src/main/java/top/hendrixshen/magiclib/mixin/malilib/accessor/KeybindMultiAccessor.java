@@ -2,15 +2,15 @@ package top.hendrixshen.magiclib.mixin.malilib.accessor;
 
 import fi.dy.masa.malilib.hotkeys.IHotkeyCallback;
 import fi.dy.masa.malilib.hotkeys.KeybindMulti;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 import top.hendrixshen.magiclib.dependency.api.annotation.Dependencies;
 import top.hendrixshen.magiclib.dependency.api.annotation.Dependency;
 
-@Environment(EnvType.CLIENT)
-@Dependencies(and = @Dependency("malilib"))
+@OnlyIn(Dist.CLIENT)
+@Dependencies(and = @Dependency("mafglib"))
 @Mixin(value = KeybindMulti.class, remap = false)
 public interface KeybindMultiAccessor {
     @Accessor()

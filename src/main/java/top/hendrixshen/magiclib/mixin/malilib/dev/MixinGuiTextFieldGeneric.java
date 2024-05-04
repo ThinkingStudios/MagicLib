@@ -1,9 +1,9 @@
 package top.hendrixshen.magiclib.mixin.malilib.dev;
 
 import fi.dy.masa.malilib.gui.GuiTextFieldGeneric;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.components.EditBox;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -16,8 +16,8 @@ import top.hendrixshen.magiclib.dependency.api.annotation.Dependency;
 import top.hendrixshen.magiclib.dependency.impl.MixinDependencyPredicates;
 
 // Fix mojang mappings stackoverflow
-@Environment(EnvType.CLIENT)
-@Dependencies(and = @Dependency(value = "malilib"), predicate = MixinDependencyPredicates.DevMojangMixinPredicate.class)
+@OnlyIn(Dist.CLIENT)
+@Dependencies(and = @Dependency(value = "mafglib"), predicate = MixinDependencyPredicates.DevMojangMixinPredicate.class)
 @Mixin(value = GuiTextFieldGeneric.class, remap = false)
 public abstract class MixinGuiTextFieldGeneric extends EditBox {
     @Unique

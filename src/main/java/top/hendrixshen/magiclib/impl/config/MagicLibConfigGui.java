@@ -1,7 +1,7 @@
 package top.hendrixshen.magiclib.impl.config;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.ApiStatus;
 import top.hendrixshen.magiclib.MagicLibReference;
 import top.hendrixshen.magiclib.malilib.impl.ConfigManager;
@@ -9,7 +9,7 @@ import top.hendrixshen.magiclib.malilib.impl.gui.ConfigGui;
 import top.hendrixshen.magiclib.util.StringUtil;
 
 @ApiStatus.Internal
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class MagicLibConfigGui extends ConfigGui {
     private static MagicLibConfigGui INSTANCE;
 

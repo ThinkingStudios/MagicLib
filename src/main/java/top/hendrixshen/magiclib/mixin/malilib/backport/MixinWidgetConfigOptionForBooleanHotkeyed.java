@@ -16,8 +16,8 @@ import fi.dy.masa.malilib.gui.widgets.WidgetKeybindSettings;
 import fi.dy.masa.malilib.gui.widgets.WidgetListConfigOptionsBase;
 import fi.dy.masa.malilib.hotkeys.IKeybind;
 import fi.dy.masa.malilib.hotkeys.KeybindSettings;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
@@ -33,8 +33,8 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Objects;
 
-@Environment(EnvType.CLIENT)
-@Dependencies(and = @Dependency(value = "malilib", versionPredicate = "<0.11.4"))
+@OnlyIn(Dist.CLIENT)
+@Dependencies(and = {@Dependency(value = "mafglib"/*, versionPredicate = "<0.11.4"*/), @Dependency(value = "minecraft", versionPredicate = "<1.18")})
 @Mixin(value = WidgetConfigOption.class, remap = false)
 public abstract class MixinWidgetConfigOptionForBooleanHotkeyed extends WidgetConfigOptionBase<GuiConfigsBase.ConfigOptionWrapper> {
     @Mutable

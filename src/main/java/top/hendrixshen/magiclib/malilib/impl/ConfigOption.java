@@ -1,8 +1,8 @@
 package top.hendrixshen.magiclib.malilib.impl;
 
 import fi.dy.masa.malilib.config.options.ConfigBase;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import top.hendrixshen.magiclib.dependency.api.ConfigDependencyPredicate;
 import top.hendrixshen.magiclib.dependency.impl.Dependencies;
@@ -12,7 +12,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class ConfigOption {
     private final Config annotation;
     private final ConfigBase<?> config;

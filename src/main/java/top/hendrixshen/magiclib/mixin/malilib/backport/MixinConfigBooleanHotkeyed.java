@@ -11,16 +11,16 @@ import fi.dy.masa.malilib.hotkeys.IHotkey;
 import fi.dy.masa.malilib.hotkeys.IKeybind;
 import fi.dy.masa.malilib.hotkeys.KeybindSettings;
 import fi.dy.masa.malilib.util.JsonUtils;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import top.hendrixshen.magiclib.dependency.api.annotation.Dependencies;
 import top.hendrixshen.magiclib.dependency.api.annotation.Dependency;
 
-@Environment(EnvType.CLIENT)
-@Dependencies(and = @Dependency(value = "malilib", versionPredicate = "<0.11.4"))
+@OnlyIn(Dist.CLIENT)
+@Dependencies(and = {@Dependency(value = "mafglib"/*, versionPredicate = "<0.11.4"*/), @Dependency(value = "minecraft", versionPredicate = "<1.18")})
 @Mixin(value = ConfigBooleanHotkeyed.class, remap = false)
 public abstract class MixinConfigBooleanHotkeyed extends ConfigBoolean implements IHotkeyTogglable {
     @Final

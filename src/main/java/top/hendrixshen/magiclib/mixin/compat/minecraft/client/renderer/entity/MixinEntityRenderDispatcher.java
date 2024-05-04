@@ -1,9 +1,9 @@
 package top.hendrixshen.magiclib.mixin.compat.minecraft.client.renderer.entity;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.world.entity.Entity;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Quaternionf;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -13,7 +13,7 @@ import top.hendrixshen.magiclib.compat.minecraft.api.client.renderer.entity.Enti
 //$$ import net.minecraft.client.Camera;
 //#endif
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 @Mixin(EntityRenderDispatcher.class)
 public abstract class MixinEntityRenderDispatcher implements EntityRenderDispatcherCompatApi {
     //#if MC > 11404

@@ -1,12 +1,12 @@
 package top.hendrixshen.magiclib.compat.minecraft.api.client.gui.screens;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.client.gui.components.events.GuiEventListener;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import top.hendrixshen.magiclib.compat.api.UnImplCompatApiException;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public interface ScreenCompatApi {
     default GuiEventListener addRenderableWidgetCompat(GuiEventListener guiEventListener) {
         throw new UnImplCompatApiException();

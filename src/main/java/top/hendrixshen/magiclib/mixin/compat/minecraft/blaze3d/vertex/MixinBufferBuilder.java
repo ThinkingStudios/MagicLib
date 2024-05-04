@@ -1,8 +1,8 @@
 package top.hendrixshen.magiclib.mixin.compat.minecraft.blaze3d.vertex;
 
 import com.mojang.blaze3d.vertex.BufferBuilder;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Matrix4f;
 import org.spongepowered.asm.mixin.Mixin;
 import top.hendrixshen.magiclib.compat.minecraft.api.blaze3d.vertex.BufferBuilderCompatApi;
@@ -13,7 +13,7 @@ import top.hendrixshen.magiclib.util.MiscUtil;
 //$$ import org.spongepowered.asm.mixin.Shadow;
 //#endif
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 @Mixin(BufferBuilder.class)
 public abstract class MixinBufferBuilder implements BufferBuilderCompatApi {
     //#if MC < 11500

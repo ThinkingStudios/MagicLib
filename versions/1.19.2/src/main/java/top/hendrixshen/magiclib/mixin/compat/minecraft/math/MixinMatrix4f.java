@@ -2,8 +2,8 @@ package top.hendrixshen.magiclib.mixin.compat.minecraft.math;
 
 import com.mojang.math.Matrix4f;
 import com.mojang.math.Quaternion;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import top.hendrixshen.magiclib.compat.minecraft.api.math.Matrix4fCompatApi;
@@ -15,7 +15,7 @@ import top.hendrixshen.magiclib.compat.minecraft.api.math.Matrix4fCompatApi;
 /**
  * The implementation for mc [1.14.4, ~)
  */
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 @Mixin(Matrix4f.class)
 public abstract class MixinMatrix4f implements Matrix4fCompatApi {
     //#if MC > 11605

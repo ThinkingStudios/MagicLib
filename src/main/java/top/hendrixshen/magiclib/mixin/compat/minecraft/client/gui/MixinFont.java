@@ -1,10 +1,10 @@
 package top.hendrixshen.magiclib.mixin.compat.minecraft.client.gui;
 
 import com.mojang.blaze3d.vertex.Tesselator;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.Font;
 import net.minecraft.network.chat.Component;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Matrix4f;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -21,7 +21,7 @@ import top.hendrixshen.magiclib.util.MiscUtil;
 //$$ import org.lwjgl.opengl.GL11;
 //#endif
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 @Mixin(Font.class)
 public abstract class MixinFont implements FontCompatApi {
     //#if MC < 11600

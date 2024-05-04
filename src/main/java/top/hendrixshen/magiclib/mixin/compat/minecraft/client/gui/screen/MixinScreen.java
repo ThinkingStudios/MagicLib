@@ -1,10 +1,10 @@
 package top.hendrixshen.magiclib.mixin.compat.minecraft.client.gui.screen;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import top.hendrixshen.magiclib.compat.minecraft.api.client.gui.screens.ScreenCompatApi;
@@ -16,7 +16,7 @@ import top.hendrixshen.magiclib.compat.minecraft.api.client.gui.screens.ScreenCo
 //$$ import java.util.List;
 //#endif
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 @Mixin(Screen.class)
 public abstract class MixinScreen implements ScreenCompatApi {
     //#if MC > 11605

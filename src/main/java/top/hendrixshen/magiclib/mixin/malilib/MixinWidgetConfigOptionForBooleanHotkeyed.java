@@ -1,5 +1,7 @@
 package top.hendrixshen.magiclib.mixin.malilib;
 
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.spongepowered.asm.mixin.Mixin;
 //#if MC > 11701
 import fi.dy.masa.malilib.config.IConfigBase;
@@ -16,8 +18,6 @@ import fi.dy.masa.malilib.gui.widgets.WidgetConfigOptionBase;
 import fi.dy.masa.malilib.gui.widgets.WidgetKeybindSettings;
 import fi.dy.masa.malilib.gui.widgets.WidgetListConfigOptionsBase;
 import fi.dy.masa.malilib.hotkeys.IKeybind;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -27,8 +27,8 @@ import top.hendrixshen.magiclib.dependency.api.annotation.Dependencies;
 import top.hendrixshen.magiclib.dependency.api.annotation.Dependency;
 import top.hendrixshen.magiclib.malilib.impl.config.MagicConfigBooleanHotkeyed;
 
-@Environment(EnvType.CLIENT)
-@Dependencies(and = @Dependency(value = "malilib", versionPredicate = ">=0.11.4"))
+@OnlyIn(Dist.CLIENT)
+@Dependencies(and = {@Dependency(value = "mafglib"/*, versionPredicate = ">=0.11.4"*/), @Dependency(value = "minecraft", versionPredicate = ">=1.18")})
 @Mixin(value = WidgetConfigOption.class, remap = false)
 public abstract class MixinWidgetConfigOptionForBooleanHotkeyed extends WidgetConfigOptionBase<GuiConfigsBase.ConfigOptionWrapper> {
     @Shadow

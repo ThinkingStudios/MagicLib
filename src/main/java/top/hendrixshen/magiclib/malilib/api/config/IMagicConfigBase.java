@@ -3,14 +3,14 @@ package top.hendrixshen.magiclib.malilib.api.config;
 import fi.dy.masa.malilib.config.IConfigBase;
 import fi.dy.masa.malilib.config.options.ConfigBase;
 import fi.dy.masa.malilib.util.StringUtils;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
 import top.hendrixshen.magiclib.language.api.I18n;
 
 import java.util.function.Consumer;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public interface IMagicConfigBase extends IConfigBase {
     @Nullable
     Consumer<ConfigBase<?>> getValueChangedFromJsonCallback();

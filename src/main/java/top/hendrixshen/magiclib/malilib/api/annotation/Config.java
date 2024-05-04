@@ -1,7 +1,7 @@
 package top.hendrixshen.magiclib.malilib.api.annotation;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import top.hendrixshen.magiclib.dependency.api.ConfigDependencyPredicate;
 import top.hendrixshen.magiclib.dependency.api.annotation.Dependencies;
 import top.hendrixshen.magiclib.dependency.impl.ConfigDependencyPredicates;
@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 /**
  * Configuration annotations.
  */
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Config {

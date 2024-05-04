@@ -13,8 +13,8 @@ import fi.dy.masa.malilib.hotkeys.IHotkey;
 import fi.dy.masa.malilib.hotkeys.IHotkeyCallback;
 import fi.dy.masa.malilib.hotkeys.IKeybind;
 import fi.dy.masa.malilib.hotkeys.KeyAction;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -29,8 +29,8 @@ import top.hendrixshen.magiclib.malilib.impl.config.MagicConfigHotkey;
 import top.hendrixshen.magiclib.mixin.malilib.accessor.KeybindMultiAccessor;
 import top.hendrixshen.magiclib.util.StringUtil;
 
-@Environment(EnvType.CLIENT)
-@Dependencies(and = @Dependency("malilib"))
+@OnlyIn(Dist.CLIENT)
+@Dependencies(and = @Dependency("mafglib"))
 @Mixin(value = WidgetConfigOption.class, remap = false)
 public abstract class MixinWidgetConfigOptionForHotkeyed extends WidgetConfigOptionBase<GuiConfigsBase.ConfigOptionWrapper> {
     public MixinWidgetConfigOptionForHotkeyed(int x, int y, int width, int height, WidgetListConfigOptionsBase<?, ?> parent, GuiConfigsBase.ConfigOptionWrapper entry, int listIndex) {

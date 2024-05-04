@@ -8,8 +8,8 @@ import fi.dy.masa.malilib.hotkeys.IHotkey;
 import fi.dy.masa.malilib.hotkeys.IKeybindManager;
 import fi.dy.masa.malilib.hotkeys.IKeybindProvider;
 import fi.dy.masa.malilib.util.Color4f;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import top.hendrixshen.magiclib.malilib.api.annotation.Config;
 import top.hendrixshen.magiclib.malilib.api.annotation.Hotkey;
@@ -27,7 +27,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class ConfigManager implements IKeybindProvider {
     private static final ConcurrentHashMap<String, ConfigManager> INSTANCES = new ConcurrentHashMap<>();
     private final String identifier;
