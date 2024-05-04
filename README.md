@@ -1,18 +1,5 @@
 # MagicLib
 
-[![Minecraft](http://cf.way2muchnoise.eu/versions/Minecraft_576459_all.svg?badge_style=flat)](https://www.curseforge.com/minecraft/mc-mods/magiclib/files)
-[![License](https://img.shields.io/github/license/Hendrix-Shen/MagicLib?label=License&style=flat-square)](https://github.com/Hendrix-Shen/MagicLib/blob/master/LICENSE)
-![Languages](https://img.shields.io/github/languages/top/Hendrix-Shen/MagicLib?style=flat-square)
-![Java](https://img.shields.io/badge/Java-8%20%7C%209%20%7C%2010%20%7C%2011%20%7C%2012%20%7C%2013%20%7C%2014%20%7C%2015%20%7C%2016%20%7C%2017%20%7C%2018-orange?style=flat-square)
-[![Issues](https://img.shields.io/github/issues/Hendrix-Shen/MagicLib?style=flat-square)](https://github.com/Hendrix-Shen/MagicLib/issues)
-[![Pull Requests](https://img.shields.io/github/issues-pr/Hendrix-Shen/MagicLib?style=flat-square)](https://github.com/Hendrix-Shen/MagicLib/pulls)
-[![Last Building](https://img.shields.io/github/actions/workflow/status/Hendrix-Shen/MagicLib/CI.yml?label=Last%20build&style=flat-square)](https://github.com/Hendrix-Shen/MagicLib/actions/workflows/CI.yml)
-[![Stable Release](https://img.shields.io/github/v/release/Hendrix-Shen/MagicLib?label=Stable%20Release&style=flat-square)](https://github.com/Hendrix-Shen/MagicLib/releases)
-[![Development Release Downloads](https://img.shields.io/github/v/release/Hendrix-Shen/MagicLib?include_prereleases&label=Development%20Release&style=flat-square)](https://github.com/Hendrix-Shen/MagicLib/releases)
-[![Github Release Downloads](https://img.shields.io/github/downloads/Hendrix-Shen/MagicLib/total?label=Github%20Release%20Downloads&style=flat-square)](https://github.com/Hendrix-Shen/MagicLib/releases)
-[![Modrinth Downloads](https://img.shields.io/modrinth/dt/mv1zH6ln?label=Modrinth%20Downloads&logo=Modrinth%20Downloads&style=flat-square)](https://modrinth.com/mod/magiclib)
-[![CurseForge Downloads](http://cf.way2muchnoise.eu/576459.svg?badge_style=flat)](https://www.curseforge.com/minecraft/mc-mods/magiclib)
-
 English | [中文](./README_ZH_CN.md)
 
 ⚠️**Warning: The project is still in the early development stage.**
@@ -27,7 +14,6 @@ A library of versatile mod dependencies.
 
 | Dependency | Type     | Environment     | Link                                                                                                                                                                                              |
 |------------|----------|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Curtain    | Optional | Client / Server | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/curtain) &#124; [Modrinth](https://modrinth.com/mod/curtain) &#124; [GitHub](https://github.com/Gu-ZT/Curtain/releases)                 |
 | MaFgLib    | Optional | Client          | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/mafglib) &#124; [Modrinth](https://modrinth.com/mod/mafglib) &#124; [GitHub](https://github.com/ThinkingStudios/MaLiLib-Forge/releases) |
 
 ## Feature
@@ -39,7 +25,7 @@ A library of versatile mod dependencies.
 ### Dependency check
 
 We have added a complete dependency checking system to verify dependency availability by means of expressions and even custom predicates, who can be applied in a variety of scenarios, e.g.
-- MagicLibMixinPlugin provides additional dependency checking for the module, which makes up for some shortcomings of Fabric Loader, for example by setting different dependencies for the client side and the server side.
+- MagicLibMixinPlugin provides additional dependency checking for the mod, for example by setting different dependencies for the client side and the server side.
 - Dependency checking can also be applied to Mixin, and Mixin will only be applied if the conditions are met.
 - Dependency checking can also be applied to configuration management so that the configuration item is only displayed if the conditions are met.
 - Further features may be included in future developments.
@@ -65,7 +51,7 @@ And use `preprocess` to be compatible with all versions.
 - Minecraft 1.18.2
 - Minecraft 1.19.2
 - Minecraft 1.20.1
-- Minecraft 1.20.4
+- Minecraft 1.20.4 (WIP)
 
 ### Mappings
 
