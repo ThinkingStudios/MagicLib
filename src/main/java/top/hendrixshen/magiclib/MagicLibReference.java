@@ -1,7 +1,7 @@
 package top.hendrixshen.magiclib;
 
 import lombok.Getter;
-import net.fabricmc.loader.api.FabricLoader;
+import net.minecraftforge.fml.ModList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import top.hendrixshen.magiclib.util.StringUtil;
@@ -14,9 +14,9 @@ public class MagicLibReference {
     @Getter
     private static final String modName = "@MOD_NAME@";
     @Getter
-    private static final String modNameCurrent = FabricLoader.getInstance().getModContainer(modIdentifierCurrent).orElseThrow(RuntimeException::new).getMetadata().getName();
+    private static final String modNameCurrent = ModList.get().getModContainerById(modIdentifierCurrent).orElseThrow(RuntimeException::new).getModInfo().getDisplayName();
     @Getter
-    private static final String modVersion = FabricLoader.getInstance().getModContainer(modIdentifierCurrent).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
+    private static final String modVersion = ModList.get().getModContainerById(modIdentifierCurrent).orElseThrow(RuntimeException::new).getModInfo().getVersion().getQualifier();
     @Getter
     private static final String modVersionType = StringUtil.getVersionType(modVersion);
     @Getter

@@ -1,4 +1,4 @@
-name: CI
+name: Build
 on:
   push:
     branches:
@@ -176,15 +176,6 @@ jobs:
             fabricWrapper/build/libs/*.jar
             fabricWrapper/build/tmp/submods/META-INF/jars/*.jar
 
-      - name: Upload assets Github Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ github.event.ref }}
-          files: |
-            LICENSE
-            fabricWrapper/build/libs/*.jar
-            fabricWrapper/build/tmp/submods/META-INF/jars/*.jar
-
       - name: Publish release to CurseForge & Modrinth
         uses: Kir-Antipov/mc-publish@v3.3
         with:
@@ -200,19 +191,13 @@ jobs:
           version-type: 'release'
           changelog: ${{ github.event.release.body }}
           loaders: |
-            fabric
-            quilt
+            forge
           game-versions: |
-            1.14.4
-            1.15.2
             1.16.5
-            1.17.1
             1.18.2
             1.19.2
-            1.19.3
-            1.19.4
             1.20.1
-            1.20.2
+            1.20.4
           game-version-filter: any
           java: |
             8
@@ -228,7 +213,7 @@ jobs:
             18
           dependencies: |
             carpet(optional)
-            malilib(optional)
+            mafglib(optional)
           retry-attempts: 2
           retry-delay: 10000
 

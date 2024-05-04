@@ -1,12 +1,12 @@
 package top.hendrixshen.magiclib.event.render.api;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import top.hendrixshen.magiclib.event.render.impl.RenderContext;
 
 import java.util.function.Supplier;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 interface IRenderEvent<T> {
     default Supplier<String> getProfilerSectionSupplier() {
         return () -> this.getClass().getName();

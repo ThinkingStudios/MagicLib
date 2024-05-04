@@ -8,13 +8,13 @@ import top.hendrixshen.magiclib.MagicLibReference;
 import top.hendrixshen.magiclib.language.impl.MagicLanguageManager;
 import top.hendrixshen.magiclib.malilib.impl.ConfigHandler;
 import top.hendrixshen.magiclib.malilib.impl.ConfigManager;
-import top.hendrixshen.magiclib.util.FabricUtil;
+import top.hendrixshen.magiclib.util.ForgeUtil;
 import top.hendrixshen.magiclib.util.ReflectUtil;
 
 import java.util.List;
 
 public class ConfigEntrypoint {
-    private static final boolean isMalilibLoaded = FabricUtil.isModLoaded("malilib");
+    private static final boolean isMalilibLoaded = ForgeUtil.isModLoaded("malilib");
     private static final int configVersion = 1;
 
     public static @Nullable Screen getGui(Screen parent) {

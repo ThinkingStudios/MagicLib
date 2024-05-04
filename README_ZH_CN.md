@@ -25,16 +25,15 @@
 
 ## 依赖库
 
-| 依赖       | 类型 | 环境        | 链接                                                                                                                                   |
-|----------|----|-----------|--------------------------------------------------------------------------------------------------------------------------------------|
-| Carpet   | 可选 | 客户端 / 服务端 | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/carpet) &#124; [GitHub](https://github.com/gnembon/fabric-carpet/releases) |
-| MaliLib  | 可选 | 客户端       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/malilib)                                                                   |
-| Mod Menu | 可选 | 客户端       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/modmenu) &#124; [Modrinth](https://modrinth.com/mod/modmenu)               |
+| 依赖      | 类型 | 环境        | 链接                                                                                                                                                                                                |
+|---------|----|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Curtain | 可选 | 客户端 / 服务端 | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/curtain) &#124; [Modrinth](https://modrinth.com/mod/curtain) &#124; [GitHub](https://github.com/Gu-ZT/Curtain/releases)                 |
+| MaFgLib | 可选 | 客户端       | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/mafglib) &#124; [Modrinth](https://modrinth.com/mod/mafglib) &#124; [GitHub](https://github.com/ThinkingStudios/MaLiLib-Forge/releases) |
 
 ## 功能
 
 ### 兼容 API
-- 多版本兼容，是的，我们使用了一些手段来兼容Fabric Loader上运行的所有Minecraft版本（1.14+）。这是怎么做到的？魔法:(
+- 多版本兼容，是的，我们使用了一些手段来兼容(Neo)Forge上运行的所有Minecraft版本（1.16+）。这是怎么做到的？魔法:(
 - 我们编写了 兼容API，用于平衡各版本间的差异。对于同时维护多个MC版本模组开发者来说，可以在一定程度上忽视 Mojang 对于 MC 的更改。你不必关心 Mojang 做了什么，使用 API 你将轻松地使不同MC版本间使用相同的代码。
 
 ### 依赖检查
@@ -48,30 +47,24 @@
 ### I18n
 - 我们重新实现了独立于MC的I18n，并且可以设置 MagicLib I18n 的备用语言列表。Mojang在对待I18n文本使用了一些手段，使得String.format的部分特性不可用，这通常会让人很恼火。
 
-### Malilib 扩展
-- 我们为 Malilib 编写了一个非常实用的配置管理模块，我们将尽可能的使用基本数据类型与 Java注解 来生成配置清单。同时对于配置文件，我们加入了配置版本系统，这将有助于您在配置文件结构发生重大变动时，快速的编写您自定义的迁移解决方案。
-- 我们移植了一些来自高版本Malilib的特性，以便于在使用适配较低版本 Minecraft 的 Malilib 时，使用同样的特性。
+### MaFgLib 扩展
+- 我们为 MaFgLib 编写了一个非常实用的配置管理模块，我们将尽可能的使用基本数据类型与 Java注解 来生成配置清单。同时对于配置文件，我们加入了配置版本系统，这将有助于您在配置文件结构发生重大变动时，快速的编写您自定义的迁移解决方案。
+- 我们移植了一些来自高版本MaFgLib的特性，以便于在使用适配较低版本 Minecraft 的 MaFgLib 时，使用同样的特性。
 
 ## 开发
 
 ### 支持
 
-当前主开发版本：1.20.4
+当前主开发版本：1.20.1
 
 并且使用 `预处理` 来兼容各版本。
 
 **注意: 我仅接受以下版本的议题。请注意该信息的时效性，任何不在此列出的版本议题均会被关闭。**
 
-- Minecraft 1.14.4
-- Minecraft 1.15.2
 - Minecraft 1.16.5
-- Minecraft 1.17.1
 - Minecraft 1.18.2
 - Minecraft 1.19.2
-- Minecraft 1.19.3
-- Minecraft 1.19.4
 - Minecraft 1.20.1
-- Minecraft 1.20.2
 - Minecraft 1.20.4
 
 ### 混淆映射表

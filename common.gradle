@@ -6,7 +6,7 @@ import org.objectweb.asm.ClassWriter
 import org.objectweb.asm.tree.ClassNode
 import org.objectweb.asm.tree.LdcInsnNode
 
-apply(plugin: "fabric-loom")
+apply(plugin: "dev.architectury.loom")
 apply(plugin: "maven-publish")
 apply(plugin: "signing")
 apply(plugin: "com.replaymod.preprocess")
@@ -74,28 +74,24 @@ configurations {
 
 // Module, Property prefix, Resolve condition, Transitive dependencies.
 def apiDependencies = [
-        ["carpet:fabric-carpet"              , "carpet" , true, false],
-        ["curse.maven:malilib-303119"        , "malilib", true, false],
-        ["maven.modrinth:modmenu"            , "modmenu", true, false],
-        ["net.fabricmc.fabric-api:fabric-api", "fabric" , true, true ],
+        ["maven.modrinth:curtain"              , "curtain" , true, false],
+        ["maven.modrinth:mafglib"              , "mafglib", true, false]
 ]
 
 // Module, Property prefix, Resolve condition, Transitive dependencies.
 def runtimeDependencies = [
-        ["curse.maven:auto-config-updated-api-373261", "auto_config_updated_api", mcVersion < 11600                     , false],
         ["maven.modrinth:cloth-config"               , "cloth_config"           , mcVersion < 11600                     , false],
         ["maven.modrinth:in-game-account-switcher"   , "inGameAccountSwitcher"  , mcVersion < 12002                     , false],
-        ["maven.modrinth:lazydfu"                    , "lazydfu"                , true                                  , false],
-        ["maven.modrinth:imblocker"                  , "imblockerfabric"        , mcVersion < 12002                     , false],
-        ["curse.maven:smooth-boot-415758"            , "smoothboot"             , mcVersion < 12000                     , false],
-        ["maven.modrinth:threadtweak"                , "threadtweak"            , mcVersion > 11904 && mcVersion < 12002, false],
+        ["maven.modrinth:imblocker-original"         , "imblocker"              , mcVersion < 12002                     , false],
+        ["curse.maven:smooth-boot-forge-420913"      , "smoothboot"             , mcVersion < 11802                     , false],
+        ["maven.modrinth:smooth-boot-reloaded"       , "smoothbootreloaded"     , mcVersion > 11802 && mcVersion < 12002, false],
 ]
 
 dependencies {
     // Development environment
     minecraft("com.mojang:minecraft:${project.minecraft_version}")
     mappings(loom.officialMojangMappings())
-    modApi("net.fabricmc:fabric-loader:${project.fabric_loader_version}")
+    forge "net.minecraftforge:forge:${project.forge_version}"
 
     // Annotation processor
     modApi("org.projectlombok:lombok:${project.lombok_version}")
@@ -138,13 +134,13 @@ dependencies {
     }
 
     // ProductionRuntime Environment
-    productionRuntimeClient("net.fabricmc:fabric-loader:${project.fabric_loader_version}")
-    productionRuntimeClient("net.fabricmc:intermediary:${project.minecraft_version}")
+    //productionRuntimeClient("net.fabricmc:fabric-loader:${project.fabric_loader_version}")
+    //productionRuntimeClient("net.fabricmc:intermediary:${project.minecraft_version}")
 
-    productionRuntimeServer("net.fabricmc:fabric-installer:${project.fabric_installer_version}:server")
+    //productionRuntimeServer("net.fabricmc:fabric-installer:${project.fabric_installer_version}:server")
 
     // Misc
-    runtimeOnly(project(path: ":fabricWrapper"))
+    runtimeOnly(project(path: ":forgeWrapper"))
 }
 
 group(project.mod_maven_group)
@@ -155,6 +151,8 @@ base {
 }
 
 loom {
+    silentMojangMappingsLicense()
+
     interfaceInjection {
         enableDependencyInterfaceInjection.set(true)
     }
@@ -193,6 +191,7 @@ loom {
         }
     }
 
+    /*
     // Setup client default settings.
     runClient {
         defaultCharacterEncoding("UTF-8")
@@ -214,6 +213,7 @@ loom {
         }
     }
 
+
     // Setup server default settings.
     runServer {
         defaultCharacterEncoding("UTF-8")
@@ -226,6 +226,18 @@ loom {
             bufferedWriter.close()
         }
     }
+     */
+
+    forge {
+        mixinConfigs = [
+                "${project.mod_id}-carpet.mixins.json",
+                "${project.mod_id}-event.mixins.json",
+                "${project.mod_id}-language.mixins.json",
+                "${project.mod_id}-malilib.mixins.json",
+                "${project.mod_id}-minecraft-compat-api.mixins.json",
+                "${project.mod_id}-util-qol.mixins.json"
+        ]
+    }
 }
 
 tasks.register("serverPropertiesJar", Jar) {
@@ -237,7 +249,7 @@ tasks.register("serverPropertiesJar", Jar) {
         }
 
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(propsFile))
-        bufferedWriter.writeLine("fabric-loader-version=${project.fabric_loader_version}")
+        //bufferedWriter.writeLine("fabric-loader-version=${project.fabric_loader_version}")
         bufferedWriter.writeLine("game-version=${project.minecraft_version}")
         bufferedWriter.close()
     }
@@ -316,11 +328,7 @@ processResources {
         into("assets/${project.mod_id}")
     }
 
-    filesMatching("fabric.mod.json") {
-        filter { line ->
-            line.trim().startsWith("//") ? "" : line
-        }
-
+    filesMatching("META-INF/mods.toml") {
         expand([
                 "minecraft_dependency": project.minecraft_dependency,
                 "minecraft_version_id": project.minecraft_version.replace(".", "_"),
@@ -333,6 +341,12 @@ processResources {
                 "mod_sources"         : project.mod_sources,
                 "mod_version"         : project.getModVersion()
         ])
+    }
+
+    filesMatching("architectury.common.json") {
+        filter { line ->
+            line.trim().startsWith("//") ? "" : line
+        }
     }
 }
 

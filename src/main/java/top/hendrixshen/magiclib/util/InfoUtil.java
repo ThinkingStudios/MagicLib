@@ -1,9 +1,9 @@
 package top.hendrixshen.magiclib.util;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
@@ -16,7 +16,7 @@ import java.util.Optional;
 //$$ import net.minecraft.network.chat.Component;
 //#endif
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class InfoUtil {
     public static void displayClientMessage(Component component, boolean useActionBar) {
         Optional.ofNullable(Minecraft.getInstance().player).ifPresent(p -> p.displayClientMessage(component, useActionBar));

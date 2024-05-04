@@ -1,13 +1,13 @@
 package top.hendrixshen.magiclib.dependency.impl;
 
 import lombok.ToString;
-import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.api.metadata.ModMetadata;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.forgespi.language.IModInfo;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.objectweb.asm.tree.AnnotationNode;
 import org.spongepowered.asm.util.Annotations;
-import top.hendrixshen.magiclib.util.FabricUtil;
+import top.hendrixshen.magiclib.util.ForgeUtil;
 
 @ToString
 public class Dependency {
@@ -22,8 +22,8 @@ public class Dependency {
         this.versionPredicate = versionPredicate;
         this.optional = optional;
         this.satisfied = optional ?
-                !FabricUtil.isModLoaded(modId) || FabricUtil.isModLoaded(modId, versionPredicate) :
-                FabricUtil.isModLoaded(modId, versionPredicate);
+                !ForgeUtil.isModLoaded(modId) || ForgeUtil.isModLoaded(modId, versionPredicate) :
+                ForgeUtil.isModLoaded(modId, versionPredicate);
     }
 
     @Contract("_ -> new")
@@ -41,11 +41,11 @@ public class Dependency {
 
     public String getCheckResult() {
         if (!this.satisfied) {
-            if (FabricUtil.isModLoaded(this.modId)) {
-                return FabricLoader.getInstance().getModContainer(this.modId).map(modContainer -> {
-                    ModMetadata metadata = modContainer.getMetadata();
-                    String modName = metadata.getName();
-                    String modVersion = metadata.getVersion().getFriendlyString();
+            if (ForgeUtil.isModLoaded(this.modId)) {
+                return ModList.get().getModContainerById(this.modId).map(modContainer -> {
+                    IModInfo metadata = modContainer.getModInfo();
+                    String modName = metadata.getDisplayName();
+                    String modVersion = metadata.getVersion().getQualifier();
                     return String.format("Mod %s (%s) detected. Requires [%s], but found %s!", modName, this.modId, this.versionPredicate, modVersion);
                 }).orElse(String.format("Get %s data failed!", this.modId));
             } else {

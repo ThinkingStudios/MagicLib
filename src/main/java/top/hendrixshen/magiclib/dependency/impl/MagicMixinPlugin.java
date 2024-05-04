@@ -6,7 +6,6 @@ import top.hendrixshen.magiclib.MagicLibReference;
 import top.hendrixshen.magiclib.compat.impl.MagicExtension;
 import top.hendrixshen.magiclib.dependency.api.DepCheckFailureCallback;
 import top.hendrixshen.magiclib.dependency.api.EmptyMixinPlugin;
-import top.hendrixshen.magiclib.util.FabricUtil;
 import top.hendrixshen.magiclib.util.MagicStreamHandler;
 import top.hendrixshen.magiclib.util.MixinUtil;
 
@@ -42,7 +41,7 @@ public class MagicMixinPlugin extends EmptyMixinPlugin {
     public void onLoad(String mixinPackage) {
         if (!compatVersionChecked) {
             compatVersionChecked = true;
-            FabricUtil.compatVersionCheck();
+            //ForgeUtil.compatVersionCheck();
 
             try {
                 Object transformer = MixinEnvironment.getCurrentEnvironment().getActiveTransformer();

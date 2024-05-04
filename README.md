@@ -25,16 +25,15 @@ A library of versatile mod dependencies.
 
 ## Dependencies
 
-| Dependency | Type     | Environment     | Link                                                                                                                                 |
-|------------|----------|-----------------|--------------------------------------------------------------------------------------------------------------------------------------|
-| Carpet     | Optional | Client / Server | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/carpet) &#124; [GitHub](https://github.com/gnembon/fabric-carpet/releases) |
-| MaliLib    | Optional | Client          | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/malilib)                                                                   |
-| Mod Menu   | Optional | Client          | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/modmenu) &#124; [Modrinth](https://modrinth.com/mod/modmenu)               |
+| Dependency | Type     | Environment     | Link                                                                                                                                                                                              |
+|------------|----------|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Curtain    | Optional | Client / Server | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/curtain) &#124; [Modrinth](https://modrinth.com/mod/curtain) &#124; [GitHub](https://github.com/Gu-ZT/Curtain/releases)                 |
+| MaFgLib    | Optional | Client          | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/mafglib) &#124; [Modrinth](https://modrinth.com/mod/mafglib) &#124; [GitHub](https://github.com/ThinkingStudios/MaLiLib-Forge/releases) |
 
 ## Feature
 
 ### Compat API
-- Multi-version compatibility, yes, we have used a number of means to make it compatible with all the latest releases of Minecraft (1.14+) running on the Fabric Loader. How is this done? Magic :(
+- Multi-version compatibility, yes, we have used a number of means to make it compatible with all the latest releases of Minecraft (1.16+) running on the (Neo)Forge. How is this done? Magic :(
 - We have written compatibility APIs for balancing the differences between versions. For developers maintaining multiple MC versions of mods at the same time, it is possible to ignore Mojang's changes to MC to a certain extent. You don't have to care about what Mojang has done, using the API you will easily be able to use the same code between MC versions.
 
 ### Dependency check
@@ -46,32 +45,26 @@ We have added a complete dependency checking system to verify dependency availab
 - Further features may be included in future developments.
 
 ### I18n
-- We have reimplemented I18n independent of MC and can set the list of alternate languages for MagicLib I18n. Mojang uses some tricks with I18n text to make some features of String.format unavailable, which is usually annoying.
+- We have reimplemented I18n independent of MC and can set the list of alternate languages for MagicLib I18n. Mojang uses some tricks with I18n text to make some features of `String.format` unavailable, which is usually annoying.
 
-### Malilib extensions
-- We have written a very useful configuration management module for Malilib where we will use basic data types with Java annotations to generate configuration lists wherever possible. Also, for configuration files we have included a configuration versioning system which will help you to quickly write your own custom migration solution in the event of a major change to the configuration file structure.
-- We have ported some features from a higher version of Malilib to make it easier to use the same features when using Malilib adapted to a lower version of Minecraft
+### MaFgLib extensions
+- We have written a very useful configuration management module for MaFgLib where we will use basic data types with Java annotations to generate configuration lists wherever possible. Also, for configuration files we have included a configuration versioning system which will help you to quickly write your own custom migration solution in the event of a major change to the configuration file structure.
+- We have ported some features from a higher version of MaFgLib to make it easier to use the same features when using MaFgLib adapted to a lower version of Minecraft
 
 ## Development
 
 ### Support
 
-Current main development for Minecraft version: 1.20.4
+Current main development for Minecraft version: 1.20.1
 
 And use `preprocess` to be compatible with all versions.
 
 **Note: I only accept the following versions of issues. Please note that this information is time-sensitive and any version of the issue not listed here will be closed**
 
-- Minecraft 1.14.4
-- Minecraft 1.15.2
 - Minecraft 1.16.5
-- Minecraft 1.17.1
 - Minecraft 1.18.2
 - Minecraft 1.19.2
-- Minecraft 1.19.3
-- Minecraft 1.19.4
 - Minecraft 1.20.1
-- Minecraft 1.20.2
 - Minecraft 1.20.4
 
 ### Mappings

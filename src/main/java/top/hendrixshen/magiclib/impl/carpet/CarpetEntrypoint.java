@@ -3,14 +3,11 @@ package top.hendrixshen.magiclib.impl.carpet;
 import org.jetbrains.annotations.Nullable;
 import top.hendrixshen.magiclib.MagicLibReference;
 import top.hendrixshen.magiclib.carpet.impl.WrappedSettingManager;
-import top.hendrixshen.magiclib.util.FabricUtil;
+import top.hendrixshen.magiclib.util.ForgeUtil;
 import top.hendrixshen.magiclib.util.ReflectUtil;
 
-import java.lang.reflect.Method;
-import java.util.Arrays;
-
 public class CarpetEntrypoint {
-    private static final boolean isCarpetLoaded = FabricUtil.isModLoaded("carpet");
+    private static final boolean isCarpetLoaded = ForgeUtil.isModLoaded("carpet");
 
     public static @Nullable WrappedSettingManager getSettingManager() {
         return isCarpetLoaded ? WrappedSettingManager.get(MagicLibReference.getModIdentifier()) : null;

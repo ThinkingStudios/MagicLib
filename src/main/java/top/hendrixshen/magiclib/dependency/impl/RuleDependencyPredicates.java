@@ -1,19 +1,20 @@
 package top.hendrixshen.magiclib.dependency.impl;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.Minecraft;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import top.hendrixshen.magiclib.carpet.impl.RuleOption;
 import top.hendrixshen.magiclib.dependency.api.RuleDependencyPredicate;
 import top.hendrixshen.magiclib.impl.carpet.MagicLibSettings;
-import top.hendrixshen.magiclib.util.FabricUtil;
+import top.hendrixshen.magiclib.util.ForgeUtil;
 
 /**
  * MagicLib built-in ConfigDependencyPredicates.
  * <p>
  * Some basic uses of predicates are given here.
  */
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class RuleDependencyPredicates {
     /**
      * Predicate that implements {@link RuleDependencyPredicate} for config predicate checking.
@@ -47,7 +48,7 @@ public class RuleDependencyPredicates {
     public static class DevRulePredicate implements RuleDependencyPredicate {
         @Override
         public boolean isSatisfied(RuleOption option) {
-            return FabricUtil.isDevelopmentEnvironment();
+            return ForgeUtil.isDevelopmentEnvironment();
         }
     }
 
@@ -59,9 +60,9 @@ public class RuleDependencyPredicates {
     public static class DevMojangRulePredicate implements RuleDependencyPredicate {
         @Override
         public boolean isSatisfied(RuleOption option) {
-            return FabricUtil.isDevelopmentEnvironment() &&
-                    FabricLoader.getInstance().getMappingResolver()
-                            .mapClassName("intermediary", "net.minecraft.class_310").equals("net.minecraft.client.Minecraft");
+            return ForgeUtil.isDevelopmentEnvironment() && ObfuscationReflectionHelper.findField(Minecraft.class, "getInstance") != null;
+//                    FabricLoader.getInstance().getMappingResolver()
+//                            .mapClassName("intermediary", "net.minecraft.class_310").equals("net.minecraft.client.Minecraft");
         }
     }
 }

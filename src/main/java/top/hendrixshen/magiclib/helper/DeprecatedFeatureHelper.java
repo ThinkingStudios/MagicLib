@@ -15,14 +15,14 @@ public class DeprecatedFeatureHelper {
     private static final LinkedBlockingQueue<String> deprecatedFeatureCache = Queues.newLinkedBlockingQueue();
     // Exclusion of records
     private static final List<Pattern> MAGICLIB_PACKAGE_PATTERN = Lists.newArrayList(
-            // Fabric Loader
-            Pattern.compile("^net\\.fabricmc\\.loader\\S+"),
+            // Forge
+            Pattern.compile("^net\\.minecraftforge\\S+"),
             // Minecraft impl
             Pattern.compile("^net\\.minecraft\\S+"),
             // Java library
             Pattern.compile("^java\\S+"),
             // Quilt Loader
-            Pattern.compile("^org\\.quiltmc.loader\\S+"),
+            Pattern.compile("^org\\.neoforged.neoforge\\S+"),
             // Magiclib impl
             Pattern.compile("^top\\.hendrixshen\\.magiclib\\S+")
     );

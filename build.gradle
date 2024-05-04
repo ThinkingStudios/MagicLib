@@ -1,5 +1,5 @@
 plugins {
-    id("fabric-loom").version("1.4-SNAPSHOT").apply(false)
+    id("dev.architectury.loom").version("1.4-SNAPSHOT").apply(false)
     id("maven-publish")
     id("org.ajoberstar.grgit").version("5.2.1")
     id("signing")
@@ -7,28 +7,14 @@ plugins {
 }
 
 preprocess {
-    def mc1144 = createNode("1.14.4", 1_14_04, "mojang")
-    def mc1152 = createNode("1.15.2", 1_15_02, "mojang")
     def mc1165 = createNode("1.16.5", 1_16_05, "mojang")
-    def mc1171 = createNode("1.17.1", 1_17_01, "mojang")
     def mc1182 = createNode("1.18.2", 1_18_02, "mojang")
     def mc1192 = createNode("1.19.2", 1_19_02, "mojang")
-    def mc1193 = createNode("1.19.3", 1_19_03, "mojang")
-    def mc1194 = createNode("1.19.4", 1_19_04, "mojang")
     def mc1201 = createNode("1.20.1", 1_20_01, "mojang")
-    def mc1202 = createNode("1.20.2", 1_20_02, "mojang")
-    def mc1204 = createNode("1.20.4", 1_20_04, "mojang")
 
-    mc1144.link(mc1152, file("versions/mapping-1.14.4-1.15.2.txt"))
-    mc1152.link(mc1165, file("versions/mapping-1.15.2-1.16.5.txt"))
-    mc1165.link(mc1171, file("versions/mapping-1.16.5-1.17.1.txt"))
-    mc1171.link(mc1182, file("versions/mapping-1.17.1-1.18.2.txt"))
+    mc1165.link(mc1182, file("versions/mapping-1.16.5-1.18.2.txt"))
     mc1182.link(mc1192, file("versions/mapping-1.18.2-1.19.2.txt"))
-    mc1192.link(mc1193, file("versions/mapping-1.19.2-1.19.3.txt"))
-    mc1193.link(mc1194, file("versions/mapping-1.19.3-1.19.4.txt"))
-    mc1194.link(mc1201, file("versions/mapping-1.19.4-1.20.1.txt"))
-    mc1201.link(mc1202, file("versions/mapping-1.20.1-1.20.2.txt"))
-    mc1202.link(mc1204, file("versions/mapping-1.20.2-1.20.4.txt"))
+    mc1192.link(mc1201, file("versions/mapping-1.19.2-1.20.1.txt"))
 }
 
 ext {
