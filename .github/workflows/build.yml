@@ -1,0 +1,115 @@
+name: Build
+on:
+  push:
+    branches:
+      - 'dev/**'
+      - 'exp/**'
+    paths:
+      - "**.gradle"
+      - "gradle.properties"
+      - "src/**"
+      - "versions/**"
+      - ".github/**"
+  release:
+    types:
+      - published
+  pull_request:
+
+jobs:
+  build:
+    if: ${{ github.event_name == 'push' && !startsWith(github.event.ref, 'refs/tags/') && contains(github.event.head_commit.message, '[build skip]') == false }}
+    strategy:
+      matrix:
+        java: [ 17 ]
+        os: [ ubuntu-latest ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout the sources
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK ${{ matrix.java }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'adopt'
+          java-version: ${{ matrix.java }}
+
+      - name: Cache Gradle packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ./.gradle/loom-caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+
+      - name: Get short commit sha
+        id: get_short_sha
+        run: |
+          short_sha=$(echo ${GITHUB_SHA} | cut -c1-7)
+          echo "short_sha=$short_sha" >> $GITHUB_OUTPUT
+
+      - name: Get commit count
+        id: get_commit_count
+        run: |
+          commit_count=$(git log | grep -e '^commit [a-zA-Z0-9]*' | wc -l)
+          echo "commit_count=$commit_count" >> $GITHUB_OUTPUT
+
+      - name: Read Properties mod info
+        id: mod_info
+        uses: christian-draeger/read-properties@1.1.1
+        with:
+          path: gradle.properties
+          properties: 'mod_name mod_version'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Preprocess sources
+        env:
+          BUILD_TYPE: "BETA"
+        run: ./gradlew preprocessResources --stacktrace
+
+      - name: Publish Maven with Gradle
+        env:
+          BUILD_TYPE: "BETA"
+          MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          SIGNING_PGP_KEY: ${{ secrets.SIGNING_PGP_KEY }}
+        run: ./gradlew build publish -x test --stacktrace
+
+      - name: Upload assets to GitHub Action
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.mod_info.outputs.mod_name }} ${{ steps.mod_info.outputs.mod_version }}.${{ steps.get_commit_count.outputs.commit_count }}+${{ steps.get_short_sha.outputs.short_sha }}
+          path: |
+            LICENSE
+            fabricWrapper/build/libs/*.jar
+            fabricWrapper/build/tmp/submods/META-INF/jars/*.jar
+
+  pull_request:
+    if: ${{ github.event_name == 'pull_request' }}
+    strategy:
+      matrix:
+        java: [ 17 ]
+        os: [ ubuntu-20.04 ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout the sources
+        uses: actions/checkout@v4
+
+      - name: Set up JDK ${{ matrix.java }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'adopt'
+          java-version: ${{ matrix.java }}
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Preprocess sources
+        run: ./gradlew preprocessResources --stacktrace
+
+      - name: Build with Gradle
+        run: ./gradlew build --stacktrace
